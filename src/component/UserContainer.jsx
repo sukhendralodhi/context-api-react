@@ -1,13 +1,19 @@
-import { useContext } from "react";
-import { NavContext } from "./Navbar";
+import { useAppContext } from "./Navbar";
 
 const UserContainer = () => {
-    const value = useContext(NavContext);
-    console.log(value);
+    const { user, logOut } = useAppContext();
     return (
         <div className="user-container">
-            <p>Hello There,</p>
-            <button className="btn">logout</button>
+            {user ? (
+
+                <>
+                    <p>Hello There,{user?.name?.toUpperCase()}</p>
+
+                    <button className="btn" onClick={logOut}>logout</button>
+                </>
+            )
+                :
+                (<p>Please Login</p>)}
         </div>
     );
 }
